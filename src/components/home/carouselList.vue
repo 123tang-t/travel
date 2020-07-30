@@ -2,7 +2,7 @@
     <div class="carousel">
         <el-carousel trigger="click" height="200px">
             <el-carousel-item v-for="item in swiper" :key="item.id">
-                <img class="carousel-img" :src="item.imgUrl" alt="item.id"/>
+                <img class="carousel-img" :src="item.imgUrl" :alt="item.id"/>
             </el-carousel-item>
         </el-carousel>
     </div>

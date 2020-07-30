@@ -1,26 +1,22 @@
 <template>
     <div class="gallary" @click="closeGallary">
         <div class="gallary-content">
-            <!-- <div class="swiper-container swiper-contain">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" v-for="(item, index) of imgs" :key="index">
-                        <img class="content-img" :src="item" :alt="index">
-                    </div>
-                </div>
-            </div> -->
             <swiper class="swiper-contain" ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(item, index) of imgs" :key="index">
                     <img class="content-img" :src="item" :alt="index">
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination"></div>
             </swiper>
-            <!-- <div class="pagination-nav">{{123}}</div> -->
         </div>
+        <!-- <div class="page-number">
+            <div class="number">
+                {{number}}
+            </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-// import Swiper from 'swiper'
 export default {
     name: 'Gallary',
     props: {
@@ -28,32 +24,22 @@ export default {
     },
     data () {
         return {
-            // swiperOptions: {
-            //     // observe: true,
-            //     // observeParents: true,
-            //     // pepagination: {
-            //     //     // el: 'swiper-pagination',
-            //     //     // type: 'fraction'
-            //     // }
-            // }
-            mySwyper: {}
+            swiperOptions: {
+                autoplay: true,
+                observer: true,
+                observeParents: true,
+                loop: true,
+                pepagination: {
+                    el: '.swiper-pagination',
+                    type: 'bullets'
+                }
+            }
         }
     },
-    // activated () {
-    //     this.initSwiper() // 初始化swiper
-    // },
-    // deactivated () {
-    //     this.mySwiper.destroy() // 销毁swiper
-    // },
     methods: {
         closeGallary () {
             this.$emit('close')
         }
-        // initSwioer () {
-        //     this.mySwyper = new Swiper(".swiper-container", {
-        //         loop: true
-        //     })
-        // }
     }
 }
 </script>
@@ -65,7 +51,7 @@ export default {
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        height: 700px;
+        height: 100%;
         background: #000;
         position: fixed;
         top: 0;
@@ -77,11 +63,20 @@ export default {
                     height: 250px;
                 }
             }
-            // .pagination-nav {
-            //     margin-top: 50px;
-            //     text-align: center;
-            //     color: #ffffff;
-            // }
+        }
+        .page-number {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            color: #fff;
+            .number {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 40px;
+                font-size: 12px;
+            }
         }
     }
 </style>
